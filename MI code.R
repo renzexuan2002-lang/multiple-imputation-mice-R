@@ -2,7 +2,8 @@
 # Multiple Imputation Pipeline (MICE)
 # ESS Hungary Round 11
 # ============================================================
-
+# emptying environment 
+rm(list=ls())
 
 # 0. Packages -----------------------------------------------
 pkgs <- c("haven", "mice", "VIM", "naniar")
