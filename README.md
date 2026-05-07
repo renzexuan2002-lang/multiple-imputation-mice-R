@@ -51,13 +51,18 @@ agea     gndr  edlvdahu  hinctnta    wkhtot   wrkctra     wkhct   emplrel    stf
  1.7      0.0       0.1      23.1      12.0      12.6      15.2       7.5       7.4       0.1
 ```
 
-`hinctnta` (household income) has the highest missingness at **23.1%**. `wkhct` (contracted hours) has **15.2%** missing after recoding ESS-specific missing codes (555, 666, 777, 888, 999) as `NA`.
+`hinctnta` (household income) has the highest missingness at **23.1%**. `wkhct` (contracted hours) has **15.2%** missing.
 
 ### Missing data pattern
 
 ![Missing data overview](output/figures/01_aggr_missing.png)
 
-The left panel shows the proportion of missing values per variable. The right panel shows combinations of missingness across variables — income and employment-related variables tend to be missing together.
+The left panel shows that `hinctnta` (23.1%) and `wkhct` (15.2%) have the 
+highest proportion of missing values. The right panel reveals that these two 
+variables frequently appear missing together with `wrkctra` and `wkhtot`, 
+suggesting that respondents who did not report income also tended to skip 
+employment-related questions. This pattern of co-occurring missingness 
+supports the use of multivariate imputation.
 
 ### Little's MCAR Test
 
@@ -159,7 +164,7 @@ R-squared: 0.257 (1,247 obs after deletion)
 
 - **Education** is the strongest predictor of income in both models (linear trend: β ≈ 2.32 in MI vs 2.34 in CC), confirming a robust positive relationship between education level and household income.
 - **Health** has a significant positive linear effect on income. MI yields a slightly smaller estimate (β = 1.87) compared to complete-case (β = 2.03), suggesting complete-case analysis may overestimate this effect by excluding lower-income respondents who are more likely to have missing data.
-- **Age** shows a negative effect on income. MI gives a stronger estimate (β = −0.020) than complete-case (β = −0.014), likely because listwise deletion disproportionately removes older, lower-income respondents.
+- **Age** shows a negative effect on income. MI gives a stronger estimate (β = −0.020) than complete-case (β = −0.014), likely because complete-case analysis disproportionately removes older, lower-income respondents.
 - Multiple imputation recovers information from respondents with missing data across several variables, producing more reliable and generalisable estimates than complete-case analysis.
 
 ---
