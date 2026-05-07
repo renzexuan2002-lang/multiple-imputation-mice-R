@@ -23,7 +23,7 @@ install.packages(c("haven", "mice", "VIM", "naniar"))
 
 **Source:** [European Social Survey (ESS) Round 11 – Hungary](https://ess.sikt.no/en/country/321b06ad-1b98-4b7d-93ad-ca8a24e8788a/hu/)
 
-**Sample:** Hungarian respondents from ESS Round 11
+> The data must be downloaded directly from the ESS website (registration required). It cannot be redistributed here.
 
 **Variables used:**
 
@@ -48,24 +48,24 @@ install.packages(c("haven", "mice", "VIM", "naniar"))
 
 ```
 agea     gndr  edlvdahu  hinctnta    wkhtot   wrkctra     wkhct   emplrel    stfedu    health
- 1.7      0.0       0.1      23.1      12.0      12.6       9.2       7.5       7.4       0.1
+ 1.7      0.0       0.1      23.1      12.0      12.6      15.2       7.5       7.4       0.1
 ```
 
-`hinctnta` (household income) has the highest missingness at **23.1%**, followed by employment-related variables.
+`hinctnta` (household income) has the highest missingness at **23.1%**. `wkhct` (contracted hours) has **15.2%** missing after recoding ESS-specific missing codes (555, 666, 777, 888, 999) as `NA`.
 
 ### Missing data pattern
 
 ![Missing data overview](output/figures/01_aggr_missing.png)
 
-The left panel shows the proportion of missing values per variable. The right panel shows the combinations of missingness across variables — income and employment variables tend to be missing together.
+The left panel shows the proportion of missing values per variable. The right panel shows combinations of missingness across variables — income and employment-related variables tend to be missing together.
 
 ### Little's MCAR Test
 
 ```
-statistic = 2473, df = 330, p-value < 0.001, missing patterns = 46
+statistic = 2185, df = 342, p.value = 0, missing.patterns = 48
 ```
 
-The test strongly rejects the null hypothesis that data is Missing Completely At Random (MCAR). This confirms that **multiple imputation is more appropriate than Complete-case analysis**.
+The null hypothesis that data is Missing Completely At Random (MCAR) is strongly rejected (p < 0.001). This confirms that missing values are systematically related to other variables, making **multiple imputation more appropriate than complete-case analysis**.
 
 ---
 
@@ -86,7 +86,7 @@ The MICE algorithm was run with **m = 5 imputations** and **20 iterations**, usi
 
 ### Convergence plots
 
-The convergence plots show that the mean and standard deviation of imputed values mix well across the 5 chains over 20 iterations, indicating the algorithm has converged.
+The convergence plots show the mean and standard deviation of imputed values across 5 chains over 20 iterations. Good mixing between chains indicates the algorithm has converged.
 
 ![Convergence – agea, edu4, hinctnta](output/figures/02_convergence_1.png)
 
@@ -100,22 +100,23 @@ Blue lines show the observed data distribution; red lines show the 5 imputed dat
 
 ![Density plots](output/figures/05_density.png)
 
-`hinctnta` and `stfedu` show good overlap. `wkhct` contains some extreme values (contracted hours reported as 555+) which are visible as outliers but preserved in the imputation.
+`hinctnta` and `stfedu` show reasonable overlap between observed and imputed distributions. `wkhtot` shows a sharp peak at 40 hours reflecting the standard working week — the slight divergence between observed and imputed distributions is expected, as the MCAR test confirmed that missingness is not random. `wkhct` imputed values follow the observed distribution closely after recoding extreme missing codes as `NA`.
 
 ### Strip plots
 
 ![Strip plots](output/figures/06_stripplot.png)
 
-Imputed values (red, imputation numbers 2–6) follow a similar distribution to observed values (blue, imputation 1), confirming imputation quality.
+Imputed values (red, imputation numbers 2–6) follow a similar distribution to observed values (blue, imputation 1), confirming imputation quality across all variables.
 
 ### Stability across imputations
 
 ```
-             [,1]   [,2]   [,3]   [,4]   [,5]   SD
-agea       50.455 50.531 50.596 50.576 50.683  0.084
-hinctnta    5.526  5.521  5.512  5.541  5.554  0.017
-wkhtot     43.687 43.705 43.550 43.472 43.378  0.140
-stfedu      4.139  4.144  4.145  4.109  4.161  0.019
+              [,1]   [,2]   [,3]   [,4]   [,5]    SD
+agea        50.543 50.590 50.593 50.545 50.602  0.028
+hinctnta     5.472  5.547  5.532  5.492  5.511  0.030
+wkhtot      43.500 43.358 43.144 43.754 43.290  0.232
+wkhct       41.631 41.684 41.737 42.203 41.780  0.228
+stfedu       4.142  4.168  4.128  4.128  4.140  0.016
 ```
 
 Standard deviations across the 5 imputed datasets are very small, confirming stable and consistent imputations.
@@ -131,33 +132,35 @@ Standard deviations across the 5 imputed datasets are very small, confirming sta
 
 ```
 term           estimate   std.error   statistic      p.value
-(Intercept)    6.042      0.279       21.66          < 0.001
-edu4.L         2.354      0.157       14.97          < 0.001
-edu4.Q        -0.253      0.154       -1.64           0.114
-edu4.C         0.366      0.126        2.91           0.007
-health_r.L     1.848      0.308        6.00          < 0.001
-health_r.C    -0.542      0.203       -2.67           0.008
-agea          -0.018      0.004       -4.23          < 0.001
+(Intercept)    6.081      0.247       24.65          < 0.001
+edu4.L         2.321      0.163       14.28          < 0.001
+edu4.Q        -0.245      0.122       -2.02           0.044
+edu4.C         0.344      0.123        2.80           0.008
+health_r.L     1.872      0.301        6.21          < 0.001
+health_r.C    -0.496      0.212       -2.33           0.022
+agea          -0.020      0.004       -5.16          < 0.001
 ```
 
 ### Complete-Case estimates (listwise deletion)
 
 ```
 term           estimate   std.error   t value    p.value
-(Intercept)    5.844      0.308       18.997     < 0.001
-edu4.L         2.335      0.178       13.120     < 0.001
-health_r.L     2.056      0.384        5.352     < 0.001
-agea          -0.014      0.005       -2.864      0.004
+(Intercept)    5.836      0.312       18.699     < 0.001
+edu4.L         2.335      0.182       12.863     < 0.001
+edu4.C         0.395      0.132        2.985      0.003
+health_r.L     2.034      0.387        5.249     < 0.001
+health_r.C    -0.544      0.257       -2.116      0.035
+agea          -0.014      0.005       -2.795      0.005
 
-R-squared: 0.261 (1,273 obs after deletion)
+R-squared: 0.257 (1,247 obs after deletion)
 ```
 
 ### Key findings
 
-- **Education** is the strongest predictor of income in both models (linear trend: β ≈ 2.35 in MI vs 2.34 in CC).
-- **Health** has a significant positive linear effect on income, but MI yields a smaller estimate (β = 1.85) compared to complete-case (β = 2.06) — suggesting complete-case analysis may overestimate this effect.
-- **Age** shows a small negative effect on income. MI gives a stronger estimate (β = −0.018) than complete-case (β = −0.014), likely because listwise deletion removes older, lower-income respondents disproportionately.
-- Multiple imputation recovers information from **~23% missing income data**, producing more reliable and generalisable estimates.
+- **Education** is the strongest predictor of income in both models (linear trend: β ≈ 2.32 in MI vs 2.34 in CC), confirming a robust positive relationship between education level and household income.
+- **Health** has a significant positive linear effect on income. MI yields a slightly smaller estimate (β = 1.87) compared to complete-case (β = 2.03), suggesting complete-case analysis may overestimate this effect by excluding lower-income respondents who are more likely to have missing data.
+- **Age** shows a negative effect on income. MI gives a stronger estimate (β = −0.020) than complete-case (β = −0.014), likely because listwise deletion disproportionately removes older, lower-income respondents.
+- Multiple imputation recovers information from respondents with missing data across several variables, producing more reliable and generalisable estimates than complete-case analysis.
 
 ---
 
@@ -174,15 +177,11 @@ R-squared: 0.261 (1,273 obs after deletion)
 
 ## ▶️ How to Run
 
-1. Place `ESS country data - HU.sav` in your working directory
-2. Open `MI_pipeline.R` in RStudio
+1. Download the ESS Round 11 Hungary data from the [ESS website](https://ess.sikt.no/en/country/321b06ad-1b98-4b7d-93ad-ca8a24e8788a/hu/) and place `ESS country data - HU.sav` in your working directory
+2. Open `MI code.R` in RStudio
 3. Run the script top to bottom (install packages if prompted)
 4. Output files will be saved in your working directory
 
----
 
-## 📚 References
 
-- van Buuren, S., & Groothuis-Oudshoorn, K. (2011). mice: Multivariate Imputation by Chained Equations in R. *Journal of Statistical Software*, 45(3), 1–67.
-- European Social Survey (2024). ESS Round 11 – Hungary. Norwegian Social Science Data Services.
-- Little, R. J. A. (1988). A test of Missing Completely at Random for multivariate data with missing values. *Journal of the American Statistical Association*, 83(404), 1198–1202.
+
