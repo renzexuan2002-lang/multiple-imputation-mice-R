@@ -1,4 +1,4 @@
-# Multiple Imputation Pipeline – ESS Hungary Round 11
+# Multiple Imputation Pipeline 
 
 This project implements a full **Multiple Imputation by Chained Equations (MICE)** pipeline on survey data from the European Social Survey (ESS) Round 11, Hungary. The goal is to handle missing data properly before running regression analyses, and to compare results between MI-pooled estimates and complete-case analysis.
 
