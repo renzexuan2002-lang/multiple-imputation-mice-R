@@ -91,7 +91,7 @@ The MICE algorithm was run with **m = 5 imputations** and **20 iterations**, usi
 
 ### Convergence plots
 
-The convergence plots show the mean and standard deviation of imputed values across 5 chains over 20 iterations. Good mixing between chains indicates the algorithm has converged. However `perm_contract` shows some instability in the convergence plot, likely due to the small proportion of respondents in the `No_contract` category, which may cause separation issues in the polytomous regression model.
+The convergence plots show the mean and standard deviation of imputed values across 5 chains over 20 iterations. Good mixing between chains indicates the algorithm has converged. Most variables show good convergence and stable mixing across chains. However ,`perm_contract` shows some instability in the convergence plot, likely due to the small proportion of respondents in the `No_contract` category, which may cause separation issues in the polytomous regression model.
 
 ![Convergence – agea, edu4, hinctnta](output/figures/02_convergence_1.png)
 
@@ -115,7 +115,7 @@ For `wkhct`, imputed values show a  wider distribution compared to observed valu
 
 ![Strip plots](output/figures/06_stripplot.png)
 
-Imputed values (red, imputation numbers 2–6) follow a similar distribution to observed values (blue, imputation 1), confirming imputation quality across all variables.
+Imputed values (red, imputation numbers 2–6) follow a similar distribution to observed values (blue), confirming imputation quality across variables.
 
 ### Stability across imputations
 
