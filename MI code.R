@@ -25,7 +25,7 @@ vars <- c("agea","gndr","edlvdahu","hinctnta",
 
 ess <- ess[, vars]
 
-lapply(ess, function(x) sort(unique(x)))
+
 # 2. Codebook -----------------------------------------------
 lapply(ess, function(x) sort(unique(x)))  #check the values labels
 
