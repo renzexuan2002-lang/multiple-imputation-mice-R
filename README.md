@@ -167,8 +167,8 @@ R-squared: 0.257 (1,247 obs after deletion)
 ### Key findings
 
 - **Education** is the strongest predictor of income in both models (linear trend: β ≈ 2.32 in MI vs 2.34 in CC), confirming a robust positive relationship between education level and household income.
-- **Health** has a significant positive linear effect on income. MI yields a slightly smaller estimate (β = 1.87) compared to complete-case (β = 2.03), suggesting complete-case analysis may overestimate this effect by excluding lower-income respondents who are more likely to have missing data.
-- **Age** shows a negative effect on income. MI gives a stronger estimate (β = −0.020) than complete-case (β = −0.014), likely because complete-case analysis disproportionately removes older, lower-income respondents.
+- **Health** has a significant positive linear effect on income. MI yields a slightly smaller estimate (β = 1.87) compared to complete-case (β = 2.03), suggesting that complete-case analysis may overestimate this effect due to the selective exclusion of respondents with missing income data.
+- **Age** shows a negative effect on income. MI gives a stronger estimate (β = −0.020) than complete-case (β = −0.014), suggesting that complete-case analysis may have introduced bias by selectively removing respondents with missing income data.
 - Multiple imputation recovers information from respondents with missing data across several variables, producing more reliable and generalisable estimates than complete-case analysis.
 
 ---
