@@ -109,7 +109,7 @@ Blue lines show the observed data distribution; red lines show the 5 imputed dat
 
 For `wkhtot`, the observed distribution shows a sharper peak at 40 hours, reflecting the standard full-time working week. Imputed values are more dispersed, suggesting that respondents with missing working hours are more likely to be part-time workers whose hours are less regular.
 
-For `wkhct`, imputed values show a  wider distribution compared to observed values. This is consistent with the possibility that respondents with missing contracted hours may lack a formal contract altogether — such as the self-employed or those working in family businesses-leading to greater uncertainty in the imputation model. 
+For `wkhct`, imputed values show a  wider distribution compared to observed values. This is consistent with the possibility that respondents with missing contracted hours may lack a formal contract altogether — such as the self-employed or those working in family businesses — leading to greater uncertainty in the imputation model. 
 
 ### Strip plots
 
