@@ -105,7 +105,14 @@ Blue lines show the observed data distribution; red lines show the 5 imputed dat
 
 ![Density plots](output/figures/05_density.png)
 
-`hinctnta` and `stfedu` show reasonable overlap between observed and imputed distributions. `wkhtot` shows a sharp peak at 40 hours reflecting the standard working week — the slight divergence between observed and imputed distributions is expected, as the MCAR test confirmed that missingness is not random. `wkhct` imputed values follow the observed distribution closely after recoding extreme missing codes as `NA`.
+`hinctnta` and `stfedu` show reasonable overlap between observed and imputed distributions. 
+
+For `wkhtot`, the observed distribution shows a sharper peak at 40 hours,
+reflecting the standard full-time working week. Imputed values are more
+dispersed, suggesting that respondents with missing working hours are more
+likely to be part-time  whose hours are less regular.
+
+For `wkhct`, imputed values show a  wider distribution compared to observed values. This is consistent with the possibility that respondents with missing contracted hours may lack a formal contract altogether — such as the self-employed or those working in family businesses leading to greater uncertainty in the imputation model. 
 
 ### Strip plots
 
