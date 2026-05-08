@@ -91,7 +91,7 @@ The MICE algorithm was run with **m = 5 imputations** and **20 iterations**, usi
 
 ### Convergence plots
 
-The convergence plots show the mean and standard deviation of imputed values across 5 chains over 20 iterations. Good mixing between chains indicates the algorithm has converged.
+The convergence plots show the mean and standard deviation of imputed values across 5 chains over 20 iterations. Good mixing between chains indicates the algorithm has converged. However `perm_contract` shows some instability in the convergence plot, likely due to the small proportion of respondents in the `No_contract` category, which may cause separation issues in the polytomous regression model.
 
 ![Convergence – agea, edu4, hinctnta](output/figures/02_convergence_1.png)
 
