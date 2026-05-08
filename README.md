@@ -107,10 +107,7 @@ Blue lines show the observed data distribution; red lines show the 5 imputed dat
 
 `hinctnta` and `stfedu` show reasonable overlap between observed and imputed distributions. 
 
-For `wkhtot`, the observed distribution shows a sharper peak at 40 hours,
-reflecting the standard full-time working week. Imputed values are more
-dispersed, suggesting that respondents with missing working hours are more
-likely to be part-time  whose hours are less regular.
+For `wkhtot`, the observed distribution shows a sharper peak at 40 hours, reflecting the standard full-time working week. Imputed values are more dispersed, suggesting that respondents with missing working hours are more likely to be part-time  whose hours are less regular.
 
 For `wkhct`, imputed values show a  wider distribution compared to observed values. This is consistent with the possibility that respondents with missing contracted hours may lack a formal contract altogether — such as the self-employed or those working in family businesses leading to greater uncertainty in the imputation model. 
 
@@ -131,7 +128,7 @@ wkhct       41.631 41.684 41.737 42.203 41.780  0.228
 stfedu       4.142  4.168  4.128  4.128  4.140  0.016
 ```
 
-Standard deviations across the 5 imputed datasets are very small, confirming stable and consistent imputations.
+Standard deviations across the 5 imputed datasets are small relative to each variable's scale, confirming stable and consistent imputations.
 
 ---
 
