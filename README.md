@@ -107,9 +107,9 @@ Blue lines show the observed data distribution; red lines show the 5 imputed dat
 
 `hinctnta` and `stfedu` show reasonable overlap between observed and imputed distributions. 
 
-For `wkhtot`, the observed distribution shows a sharper peak at 40 hours, reflecting the standard full-time working week. Imputed values are more dispersed, suggesting that respondents with missing working hours are more likely to be part-time  whose hours are less regular.
+For `wkhtot`, the observed distribution shows a sharper peak at 40 hours, reflecting the standard full-time working week. Imputed values are more dispersed, suggesting that respondents with missing working hours are more likely to be part-time workers whose hours are less regular.
 
-For `wkhct`, imputed values show a  wider distribution compared to observed values. This is consistent with the possibility that respondents with missing contracted hours may lack a formal contract altogether — such as the self-employed or those working in family businesses leading to greater uncertainty in the imputation model. 
+For `wkhct`, imputed values show a  wider distribution compared to observed values. This is consistent with the possibility that respondents with missing contracted hours may lack a formal contract altogether — such as the self-employed or those working in family businesses-leading to greater uncertainty in the imputation model. 
 
 ### Strip plots
 
@@ -188,7 +188,7 @@ R-squared: 0.257 (1,247 obs after deletion)
 
 1. Download the ESS Round 11 Hungary data from the [ESS website](https://ess.sikt.no/en/country/321b06ad-1b98-4b7d-93ad-ca8a24e8788a/hu/) and place `ESS country data - HU.sav` in your working directory
 2. Open `MI code.R` in RStudio
-3. Run the script top to bottom (install packages if prompted)
+3. Required packages will be installed automatically if not already present.
 4. Output files will be saved in your working directory
 
 
